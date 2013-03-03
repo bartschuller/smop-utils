@@ -14,7 +14,7 @@ package object utils {
      * that expression.
      * Mnemonic: it copies.
      */
-    def © : Any = macro macros.MacroImplementations.log
+    def © : Any = macro makros.MacroImplementations.log
     /**
      * Logging method, can be placed in any expression chain.
      * This is the identity function with a side effect: it prints
@@ -22,6 +22,6 @@ package object utils {
      * that expression.
      * @see © for a shorter name for the same method.
      */
-    def LOG : Any = macro macros.MacroImplementations.log
+    def LOG : Any = macro makros.MacroImplementations.log
   }
 }

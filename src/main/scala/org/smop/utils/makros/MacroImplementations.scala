@@ -1,17 +1,18 @@
-package org.smop.utils.macros
+package org.smop.utils.makros
 
-import reflect.makro.Context
+import scala.reflect.macros.Context
 
 object MacroImplementations {
   def log(c: Context): c.Expr[Any] = {
-    import c.mirror._
+    import c.universe._
     
     c.prefix.tree match {
       case Apply(_, realPrefix :: Nil) => {
         val prefixCode = c.Expr[String](Literal(Constant(show(realPrefix))))
-        c.reify {
-          val temp = c.Expr[String](realPrefix).eval
-          println(prefixCode.eval + " = " + temp)
+        val prefix = c.Expr[String](realPrefix)
+        reify {
+          val temp = prefix.splice
+          println(prefixCode.splice + " = " + temp)
           temp
         }
       }
